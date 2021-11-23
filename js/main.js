@@ -35,7 +35,7 @@ body.addEventListener('click', function (e) {
         }
 
     } else if(!e.target.closest('._select-style')) {
-        //document.querySelector('._select-style').classList.remove('_active');
+        document.querySelector('._select-style').classList.remove('_active');
     }
 
 })
