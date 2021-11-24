@@ -44,7 +44,6 @@ body.addEventListener('click', function (e) {
     if(e.target.classList.contains('_tab-link') || e.target.parentNode.classList.contains('_tab-link') && checkTabActive == false) {
         e.preventDefault();
         tab(e.target);
-        //console.log(e.target);
     }
 
 })
