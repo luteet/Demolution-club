@@ -14,7 +14,7 @@ const body = document.querySelector('body'),
 
 
 const selectLists = document.querySelectorAll('._select-style')
-
+let checkTabActive = false;
 body.addEventListener('click', function (e) {
 
     // Меню в шапке
@@ -35,7 +35,16 @@ body.addEventListener('click', function (e) {
         }
 
     } else if(!e.target.closest('._select-style')) {
-        document.querySelector('._select-style').classList.remove('_active');
+        try {
+            document.querySelector('._select-style').classList.remove('_active');
+        }catch {}
+        
+    }
+
+    if(e.target.classList.contains('_tab-link') || e.target.parentNode.classList.contains('_tab-link') && checkTabActive == false) {
+        e.preventDefault();
+        tab(e.target);
+        //console.log(e.target);
     }
 
 })
