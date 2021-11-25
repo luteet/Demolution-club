@@ -46,6 +46,11 @@ body.addEventListener('click', function (e) {
         tab(e.target);
     }
 
+    if(e.target.classList.contains('_popup-btn') || e.target.parentNode.classList.contains('_popup-btn')) {
+        e.preventDefault();
+        popup(e.target.getAttribute('href'));
+    }
+
 })
 
 /* // Анимация {
