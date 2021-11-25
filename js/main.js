@@ -13,8 +13,10 @@ const body = document.querySelector('body'),
     header = document.querySelector('.header');
 
 
+
 const selectLists = document.querySelectorAll('._select-style')
 let checkTabActive = false;
+
 body.addEventListener('click', function (e) {
 
     // Меню в шапке
@@ -52,6 +54,51 @@ body.addEventListener('click', function (e) {
     }
 
 })
+
+
+const swiper = new Swiper('.tariffs__block', {
+    
+    //loop: true,
+    
+    spaceBetween: 15,
+    slidesPerView: 1,
+  
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+        // when window width is >= 320px
+        1180: {
+            slidesPerView: 2,
+            spaceBetween: 72,
+            centeredSlides: false,
+          
+        },
+        768: {
+            centeredSlides: true,
+            spaceBetween: 15,
+            slidesPerView: 3,
+          
+        }/* ,
+        // when window width is >= 480px
+        480: {
+          slidesPerView: 3,
+          spaceBetween: 30
+        },
+        // when window width is >= 640px
+        640: {
+          slidesPerView: 4,
+          spaceBetween: 40
+        } */
+      }
+
+  });
 
 /* // Анимация {
 
