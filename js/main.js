@@ -98,7 +98,77 @@ const swiper = new Swiper('.tariffs__block', {
         } */
       }
 
-  });
+});
+
+
+function timer() {
+
+    const timerElems = document.querySelectorAll('._timer');
+    
+    let deadline;
+    
+    timerElems.forEach(timerElem => {
+
+        deadline = new Date(
+
+            timerElem.getAttribute('data-date-year'),
+            timerElem.getAttribute('data-date-month'),
+            timerElem.getAttribute('data-date-day'),
+            timerElem.getAttribute('data-date-hour'),
+            timerElem.getAttribute('data-date-minute'));
+
+            //let timerId = null;
+            // склонение числительных
+            /* function declensionNum(num, words) {
+              return words[(num % 100 > 4 && num % 100 < 20) ? 2 : [2, 0, 1, 1, 1, 2][(num % 10 < 5) ? num % 10 : 5]];
+            } */
+            // вычисляем разницу дат и устанавливаем оставшееся времени в качестве содержимого элементов
+            function countdownTimer() {
+              const diff = deadline - new Date();
+              if (diff <= 0) {
+                clearInterval(timerId);
+              }
+              const days = diff > 0 ? Math.floor(diff / 1000 / 60 / 60 / 24) : 0;
+              const hours = diff > 0 ? Math.floor(diff / 1000 / 60 / 60) % 24 : 0;
+              const minutes = diff > 0 ? Math.floor(diff / 1000 / 60) % 60 : 0;
+              
+              /* timerElem.querySelector('.tariffs__item--timer-day .tariffs__item--timer-value').innerHTML = days;
+timerElem.querySelector('.tariffs__item--timer-hour .tariffs__item--timer-value').innerHTML = hours; */
+
+
+              const day = timerElem.querySelector('.tariffs__item--timer-day .tariffs__item--timer-value').innerHTML = days,
+                    hour = timerElem.querySelector('.tariffs__item--timer-hours .tariffs__item--timer-value').innerHTML = hours,
+                    minute = timerElem.querySelector('.tariffs__item--timer-minute .tariffs__item--timer-value').innerHTML = minutes;
+              //const seconds = diff > 0 ? Math.floor(diff / 1000) % 60 : 0;
+              /* $days.textContent = days < 10 ? '0' + days : days;
+              $hours.textContent = hours < 10 ? '0' + hours : hours;
+              $minutes.textContent = minutes < 10 ? '0' + minutes : minutes;
+              $seconds.textContent = seconds < 10 ? '0' + seconds : seconds;
+              $days.dataset.title = declensionNum(days, ['день', 'дня', 'дней']);
+              $hours.dataset.title = declensionNum(hours, ['час', 'часа', 'часов']);
+              $minutes.dataset.title = declensionNum(minutes, ['минута', 'минуты', 'минут']);
+              $seconds.dataset.title = declensionNum(seconds, ['секунда', 'секунды', 'секунд']); */
+            }
+            // получаем элементы, содержащие компоненты даты
+            /* const $days = document.querySelector('.tariffs__item--timer-day .tariffs__item--timer-value');
+            const $hours = document.querySelector('.timer__hours');
+            const $minutes = document.querySelector('.timer__minutes');
+            const $seconds = document.querySelector('.timer__seconds'); */
+            // вызываем функцию countdownTimer
+            countdownTimer();
+            // вызываем функцию countdownTimer каждую секунду
+            //timerId = setInterval(countdownTimer, 60000);
+    });
+
+    
+  // id таймера
+  
+
+
+}
+
+timer();
+  
 
 /* // Анимация {
 
