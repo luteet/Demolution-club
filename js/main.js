@@ -56,9 +56,7 @@ body.addEventListener('click', function (e) {
 })
 
 
-const swiper = new Swiper('.tariffs__block', {
-    
-    //loop: true,
+const tariffSlider = new Swiper('.tariffs__block', {
     
     spaceBetween: 15,
     slidesPerView: 1,
@@ -69,8 +67,8 @@ const swiper = new Swiper('.tariffs__block', {
     },
 
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+      nextEl: '.tariffs__block--arrow._next',
+      prevEl: '.tariffs__block--arrow._prev',
     },
     breakpoints: {
         // when window width is >= 320px
@@ -85,19 +83,27 @@ const swiper = new Swiper('.tariffs__block', {
             spaceBetween: 15,
             slidesPerView: 3,
           
-        }/* ,
-        // when window width is >= 480px
-        480: {
-          slidesPerView: 3,
-          spaceBetween: 30
-        },
-        // when window width is >= 640px
-        640: {
-          slidesPerView: 4,
-          spaceBetween: 40
-        } */
+        }
       }
+});
 
+const reviewsSlider = new Swiper('.reviews__block', {
+    
+  spaceBetween: 0,
+  slidesPerView: 1,
+  centeredSlides: true,
+
+  navigation: {
+    nextEl: '.reviews__item--slider-arrow._next',
+    prevEl: '.reviews__item--slider-arrow._prev',
+  },
+
+  breakpoints: {
+      // when window width is >= 320px
+      1180: {
+          slidesPerView: 3,
+      }
+    }
 });
 
 
@@ -117,47 +123,22 @@ function timer() {
             timerElem.getAttribute('data-date-hour'),
             timerElem.getAttribute('data-date-minute'));
 
-            //let timerId = null;
-            // склонение числительных
-            /* function declensionNum(num, words) {
-              return words[(num % 100 > 4 && num % 100 < 20) ? 2 : [2, 0, 1, 1, 1, 2][(num % 10 < 5) ? num % 10 : 5]];
-            } */
-            // вычисляем разницу дат и устанавливаем оставшееся времени в качестве содержимого элементов
-            function countdownTimer() {
-              const diff = deadline - new Date();
-              if (diff <= 0) {
-                clearInterval(timerId);
-              }
-              const days = diff > 0 ? Math.floor(diff / 1000 / 60 / 60 / 24) : 0;
-              const hours = diff > 0 ? Math.floor(diff / 1000 / 60 / 60) % 24 : 0;
-              const minutes = diff > 0 ? Math.floor(diff / 1000 / 60) % 60 : 0;
+            const day = timerElem.querySelector('.tariffs__item--timer-day .tariffs__item--timer-value'),
+                  hour = timerElem.querySelector('.tariffs__item--timer-hours .tariffs__item--timer-value'),
+                  minute = timerElem.querySelector('.tariffs__item--timer-minute .tariffs__item--timer-value');
+
+            const diff = deadline - new Date(),
               
-              /* timerElem.querySelector('.tariffs__item--timer-day .tariffs__item--timer-value').innerHTML = days;
-timerElem.querySelector('.tariffs__item--timer-hour .tariffs__item--timer-value').innerHTML = hours; */
-
-
-              const day = timerElem.querySelector('.tariffs__item--timer-day .tariffs__item--timer-value').innerHTML = days,
-                    hour = timerElem.querySelector('.tariffs__item--timer-hours .tariffs__item--timer-value').innerHTML = hours,
-                    minute = timerElem.querySelector('.tariffs__item--timer-minute .tariffs__item--timer-value').innerHTML = minutes;
-              //const seconds = diff > 0 ? Math.floor(diff / 1000) % 60 : 0;
-              /* $days.textContent = days < 10 ? '0' + days : days;
-              $hours.textContent = hours < 10 ? '0' + hours : hours;
-              $minutes.textContent = minutes < 10 ? '0' + minutes : minutes;
-              $seconds.textContent = seconds < 10 ? '0' + seconds : seconds;
-              $days.dataset.title = declensionNum(days, ['день', 'дня', 'дней']);
-              $hours.dataset.title = declensionNum(hours, ['час', 'часа', 'часов']);
-              $minutes.dataset.title = declensionNum(minutes, ['минута', 'минуты', 'минут']);
-              $seconds.dataset.title = declensionNum(seconds, ['секунда', 'секунды', 'секунд']); */
-            }
-            // получаем элементы, содержащие компоненты даты
-            /* const $days = document.querySelector('.tariffs__item--timer-day .tariffs__item--timer-value');
-            const $hours = document.querySelector('.timer__hours');
-            const $minutes = document.querySelector('.timer__minutes');
-            const $seconds = document.querySelector('.timer__seconds'); */
-            // вызываем функцию countdownTimer
-            countdownTimer();
-            // вызываем функцию countdownTimer каждую секунду
-            //timerId = setInterval(countdownTimer, 60000);
+                  days = diff > 0 ? Math.floor(diff / 1000 / 60 / 60 / 24) : 0,
+                  hours = diff > 0 ? Math.floor(diff / 1000 / 60 / 60) % 24 : 0,
+                  minutes = diff > 0 ? Math.floor(diff / 1000 / 60) % 60 : 0;
+      
+      
+            day.innerHTML = days;
+            hour.innerHTML = hours;
+            minute.innerHTML = minutes;
+             
+            //console.log
     });
 
     
@@ -168,8 +149,116 @@ timerElem.querySelector('.tariffs__item--timer-hour .tariffs__item--timer-value'
 }
 
 timer();
-  
+/* const image = new Image();
+image.src = bg;
 
+const plugin = {
+  beforeDraw: (chart) => {
+    if (image.complete) {
+      const ctx = chart.ctx;
+      const {top, left, width, height} = chart.chartArea;
+      const x = left + width / 1.95 - image.width / 2;
+      const y = top + height / 2.15 - image.height / 2;
+      ctx.drawImage(image, x, y);
+    } else {
+      image.onload = () => chart.draw();
+    }
+    
+  },
+};
+ */
+const ctx = document.getElementById('btc-chart').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Минимальный процент дохода',
+            data: dataMin,
+            backgroundColor: [
+                'rgba(24, 120, 198, 0.3)'
+            ],
+            borderColor: [
+              'rgba(24, 120, 198, 1)'
+            ],
+            pointRadius: 0,
+            borderWidth: 3,
+            cubicInterpolationMode: 'monotone',
+            tension: 0.4
+        },
+        {
+          label: 'Максимальный процент дохода',
+          data: dataMax,
+          backgroundColor: [
+            'rgba(91, 239, 203, 0.3)'
+          ],
+          borderColor: [
+            'rgba(91, 239, 203, 1)'
+          ],
+          pointRadius: 0,
+          borderWidth: 2,
+          cubicInterpolationMode: 'monotone',
+          tension: 0.4
+      }
+      ]
+    },
+    options: {
+      
+      scaleLineColor: "rgba(0,0,0,0)",
+      responsive: true,
+      plugins: {
+        legend: {
+          labels: {
+            usePointStyle: true,
+            font: {
+              size: 12,
+            }
+          },
+        }
+      },  
+      interaction: {
+        intersect: false,
+        mode: 'index',
+      },
+      
+      scales: {
+        y: {
+          suggestedMin: 2000,
+          suggestedMax: 6500,
+
+          grid: {
+            display: false,
+            borderWidth: 0,
+          }
+        },
+        x: {
+          grid: {
+            display: false,
+            borderWidth: 0,
+          }
+        },
+        
+        
+      }
+
+      }
+    
+  
+    /* options: {
+      scales: {
+          x: {
+              type: 'time',
+              time: {
+                  displayFormats: {
+                      quarter: 'MMM YYYY'
+                  }
+              }
+          }
+      }
+  } */
+
+});
 /* // Анимация {
 
 wow = new WOW({
