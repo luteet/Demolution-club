@@ -1,10 +1,3 @@
-/* $(function() {
-
-    
-
-}); */
-
-
 
 const body = document.querySelector('body'),
     html = document.querySelector('html'),
@@ -56,6 +49,8 @@ body.addEventListener('click', function (e) {
 })
 
 
+// =-=-=-=-=-=-=-= СЛАЙДЕРЫ { =-=-=-=-=-=-=-=
+
 const tariffSlider = new Swiper('.tariffs__block', {
     
     spaceBetween: 15,
@@ -106,6 +101,10 @@ const reviewsSlider = new Swiper('.reviews__block', {
     }
 });
 
+// =-=-=-=-=-=-=-= } СЛАЙДЕРЫ =-=-=-=-=-=-=-=
+
+
+// =-=-=-=-=-=-=-= ТАЙМЕР { =-=-=-=-=-=-=-=
 
 function timer() {
 
@@ -133,49 +132,34 @@ function timer() {
                   hours = diff > 0 ? Math.floor(diff / 1000 / 60 / 60) % 24 : 0,
                   minutes = diff > 0 ? Math.floor(diff / 1000 / 60) % 60 : 0;
       
-      
             day.innerHTML = days;
             hour.innerHTML = hours;
             minute.innerHTML = minutes;
-             
-            //console.log
+
     });
 
-    
-  // id таймера
-  
 
 
 }
 
 timer();
-/* const image = new Image();
-image.src = bg;
 
-const plugin = {
-  beforeDraw: (chart) => {
-    if (image.complete) {
-      const ctx = chart.ctx;
-      const {top, left, width, height} = chart.chartArea;
-      const x = left + width / 1.95 - image.width / 2;
-      const y = top + height / 2.15 - image.height / 2;
-      ctx.drawImage(image, x, y);
-    } else {
-      image.onload = () => chart.draw();
-    }
-    
-  },
-};
- */
-const ctx = document.getElementById('btc-chart').getContext('2d');
-const myChart = new Chart(ctx, {
+// =-=-=-=-=-=-=-= ТАЙМЕР } =-=-=-=-=-=-=-=
+
+
+// =-=-=-=-=-=-=-= ГРАФИК { =-=-=-=-=-=-=-=
+
+const ctx = document.querySelectorAll('._chart-element');
+
+ctx.forEach(chartElem => {
+  const chart = new Chart(chartElem.getContext('2d'), {
     type: 'line',
     data: {
-        labels: labels,
+        labels: chartElem.dataset.chartLabels.split(','),
         datasets: [
           {
             label: 'Минимальный процент дохода',
-            data: dataMin,
+            data: chartElem.dataset.chartMin.split(','),
             backgroundColor: [
                 'rgba(24, 120, 198, 0.3)'
             ],
@@ -189,7 +173,7 @@ const myChart = new Chart(ctx, {
         },
         {
           label: 'Максимальный процент дохода',
-          data: dataMax,
+          data: chartElem.dataset.chartMax.split(','),
           backgroundColor: [
             'rgba(91, 239, 203, 0.3)'
           ],
@@ -258,12 +242,99 @@ const myChart = new Chart(ctx, {
       }
   } */
 
+});  
 });
-/* // Анимация {
 
-wow = new WOW({
-mobile:       false,
-})
-wow.init();
 
-// } */
+
+// =-=-=-=-=-=-=-= ГРАФИК } =-=-=-=-=-=-=-=
+
+
+let windowSize = window.innerWidth, 
+    resizeCheck = windowSize >= 768 ? false : true;
+
+let headerLang = document.querySelector('.header__lang'),
+    headerNavBody = document.querySelector('.header__nav--body'),
+    headerNavBlockBody = document.querySelector('.header__nav--block-body');
+
+function resize() {
+  windowSize = window.innerWidth;
+  if(windowSize >= 768 && resizeCheck == false) {
+    resizeCheck = true;
+    headerNavBody.prepend(headerLang);
+    headerLang.classList.add('_visible');
+    
+  } else if(windowSize < 768 && resizeCheck == true) {
+    resizeCheck = false;
+    headerNavBlockBody.prepend(headerLang);
+    headerLang.classList.add('_visible');
+  }
+}
+
+resize();
+
+window.onresize = resize;
+
+
+
+
+/* function getCoords(elem) {
+  var box = elem.getBoundingClientRect();
+
+  return {
+  top: box.top + pageYOffset,
+  left: box.left + pageXOffset
+  };
+
+}
+
+function scrollPage() {
+
+const offsetCheckJs = document.querySelector('.offset-check-js');
+let top = [getCoords(offsetCheckJs).top, false];
+
+header.classList.add('_loaded');
+
+function scrollPageFunc() {
+  
+top[0] = getCoords(offsetCheckJs).top;
+console.log(top[0]);
+
+if(top[0] >= 150 && top[1] == false) {
+
+    top[1] = true;
+    header.style.setProperty('--pos', '-100%');
+
+    setTimeout(function() {
+        header.classList.add('_active');
+        header.style.setProperty('--pos', '0%');
+    },200);
+
+} else if(top[0] <= 150 && top[1] == true) {
+
+    top[1] = false;
+    header.style.setProperty('--pos', '-100%');
+
+    setTimeout(function() {
+        header.style.setProperty('--pos', '0%');
+        header.classList.remove('_active');
+        
+    },200);
+
+}
+}
+
+scrollPageFunc();
+
+window.onscroll = scrollPageFunc;
+
+}
+
+scrollPage();
+ */
+
+/* function test() {
+  console.log('test');
+}
+ */
+

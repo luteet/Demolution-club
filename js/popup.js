@@ -28,8 +28,6 @@ function popup(id) {
 
         popup.classList.remove('_active');
         setTimeout(function() {
-            //history.replaceState("", "", location.pathname)
-            //window.location.hash = '';
             body.classList.remove('_popup-active');
             html.style.setProperty('--popup-padding', '0px');
         },200)
@@ -50,23 +48,16 @@ function popup(id) {
         },200)
     });
 
+    document.addEventListener("keydown", function(event) {
+        if(event.keyCode == 27) {
+            removeFunc();
+            setTimeout(function() {
+                return false;
+            },200)
+        }
+    })
+
 }
 
-/* function popupInit() {
-    let hash = window.location.hash,
-        popupElem;
 
-    try {
-        popupElem = document.querySelector(hash);
-    } catch {
-        return false;
-    }
-
-    if(popupElem.classList.contains('_popup')) {
-        popup(hash);
-    }
-    
-}
-
-popupInit(); */
 
