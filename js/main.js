@@ -357,3 +357,11 @@ window.onscroll = scrollPageFunc;
 scrollPage();
 
 
+// Анимация {
+
+wow = new WOW({
+mobile:       false,
+})
+wow.init();
+
+// }
