@@ -47,17 +47,17 @@
                             <div class="header__nav--block-body">
                                 <ul class="header__nav--list">
                                     <li class="header__nav--item">
-                                        <a href="#" class="header__nav--link _nav-btn _btn-to-scroll">
+                                        <a href="#about-us-section" class="header__nav--link _nav-btn _btn-to-scroll">
                                             О нас
                                         </a>
                                     </li>
                                     <li class="header__nav--item">
-                                        <a href="#" class="header__nav--link _nav-btn _btn-to-scroll">
+                                        <a href="#about-training-section" class="header__nav--link _nav-btn _btn-to-scroll">
                                             Обучение
                                         </a>
                                     </li>
                                     <li class="header__nav--item">
-                                        <a href="#" class="header__nav--link _nav-btn _btn-to-scroll">
+                                        <a href="#tariffs-section" class="header__nav--link _nav-btn _btn-to-scroll">
                                             Тарифы
                                         </a>
                                     </li>
@@ -181,7 +181,7 @@
             </div>
         </div>
     </section>
-    <section class="about-us _decor-hexagon">
+    <section class="about-us _decor-hexagon"  id="about-us-section">
         <div class="about-us__head-elem">
             <img src="img/about-us/bg.svg" width="0" alt="" class="about-us__head-elem--img">
         </div>
@@ -189,7 +189,12 @@
         <div class="about-us__bg"></div>
         <div class="about-us__container _container">
             <div class="about-us__image _decor-hexagon">
-                <img src="img/about-us/phone.png" loading="lazy" width="343" alt="" class="about-us__image--img">
+                <div class="about-us__image--img-elem">
+                    <picture>
+                        <source srcset="img/about-us/phone.webp" type="image/webp">
+                        <img src="img/about-us/phone.png" loading="lazy" width="343" alt="" class="about-us__image--img">
+                    </picture>
+                </div>
                 <ul class="about-us__image--message-list about-us__message-list">
                     <li class="about-us__message-list--item about-us__message-item _message-item">
                         <div class="about-us__message-item--body">
@@ -316,7 +321,7 @@
             </div>
         </div>
     </section>
-    <section class="about-training">
+    <section class="about-training" id="about-training-section">
         <div class="about-training__decor">
             <img src="img/about-training/decor-left.svg" style="width: 154px; left: 0; bottom: 15%;" width="0" loading="lazy" alt="" class="about-training__decor--item _desktop-decor-item">
             <img src="img/about-training/decor-right.svg" style="width: 47px; right: 30px; bottom: 35%;" width="0" loading="lazy" alt="" class="about-training__decor--item _desktop-decor-item">
@@ -594,7 +599,7 @@
             </div>
         </div>
     </section>
-    <section class="tariffs _section-padding">
+    <section class="tariffs _section-padding"  id="tariffs-section">
         <span class="tariffs__decor-hexagon _decor-hexagon"></span>
         <div class="tariffs__container">
             <h2 class="tariffs__title _title">

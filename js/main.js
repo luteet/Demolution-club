@@ -19,6 +19,7 @@ body.addEventListener('click', function (e) {
         })
     }
 
+    // Выбор языка страницы
     if (e.target.classList.contains('_select-style-btn') || e.target.closest('._select-style-btn')) {
         
         if(e.target.closest('._select-style-btn')) {
@@ -36,15 +37,37 @@ body.addEventListener('click', function (e) {
         
     }
 
+    // Табы
     if(e.target.classList.contains('_tab-link') || e.target.parentNode.classList.contains('_tab-link') && checkTabActive == false) {
         e.preventDefault();
         tab(e.target);
     }
 
+    // Попап
     if(e.target.classList.contains('_popup-btn') || e.target.parentNode.classList.contains('_popup-btn')) {
         e.preventDefault();
         popup(e.target.getAttribute('href'));
     }
+
+    // Скролл к секциям
+    if(e.target.classList.contains('_btn-to-scroll')) {
+    
+      let section = document.querySelector(e.target.getAttribute('href'));
+
+      if(section) {
+          e.preventDefault();
+          menu.forEach(elem => {
+              elem.classList.remove('_active')
+          })
+          window.scroll({
+              left: 0, 
+              top: section.offsetTop - header.offsetHeight, 
+              behavior: 'smooth'
+          })
+          
+      }
+  
+  }
 
 })
 
