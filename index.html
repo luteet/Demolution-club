@@ -21,7 +21,7 @@
                 </div>
                 <nav class="header__nav">
                     <div class="header__nav--body">
-                        <div class="header__nav--lang header__lang _select-style">
+                        <div class="header__nav--lang header__lang _select-style _append-to-menu">
                             <button class="header__lang--panel _select-style-btn">
                                 Rus
                             </button>
@@ -191,7 +191,7 @@
             <div class="about-us__image _decor-hexagon">
                 <img src="img/about-us/phone.png" loading="lazy" width="343" alt="" class="about-us__image--img">
                 <ul class="about-us__image--message-list about-us__message-list">
-                    <li class="about-us__message-list--item about-us__message-item">
+                    <li class="about-us__message-list--item about-us__message-item _message-item">
                         <div class="about-us__message-item--body">
                             <div class="about-us__message-item--header">
                                 <span class="about-us__message-item--name">
@@ -208,7 +208,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="about-us__message-list--item about-us__message-item">
+                    <li class="about-us__message-list--item about-us__message-item _message-item">
                         <div class="about-us__message-item--body">
                             <div class="about-us__message-item--header">
                                 <span class="about-us__message-item--name">
@@ -225,7 +225,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="about-us__message-list--item about-us__message-item">
+                    <li class="about-us__message-list--item about-us__message-item _message-item">
                         <div class="about-us__message-item--body">
                             <div class="about-us__message-item--header">
                                 <span class="about-us__message-item--name">
@@ -813,7 +813,10 @@
             <span class="statistics__bg--decor-hexagon _decor-alt-hexagon"></span>
             <span class="statistics__bg--decor-hexagon _decor-hexagon"></span>
             <div class="statistics__bg--image">
-                <img src="img/statistics/bg.svg" width="0" loading="lazy" alt="" class="statistics__bg--image-img _bg">
+                <picture>
+                    <source srcset="img/statistics/bg-mob.svg" media="(max-width: 768px)">
+                    <img src="img/statistics/bg.svg" width="0" loading="lazy" alt="" class="statistics__bg--image-img _bg">
+                </picture>
             </div>
             <div class="statistics__bg--image">
                 <img src="img/mount.svg" width="0" loading="lazy" alt="" class="statistics__bg--image-img _mount">
@@ -1426,7 +1429,6 @@
     <script src="js/libs.min.js"></script>
     <script src="js/tab.js"></script>
     <script src="js/popup.js"></script>
-    <script src="js/fslightbox.js"></script>
     <script src="js/main.js"></script>
     
 </body>
