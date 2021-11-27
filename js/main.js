@@ -359,9 +359,9 @@ scrollPage();
 
 // Анимация {
 
-/* wow = new WOW({
+wow = new WOW({
 mobile:       false,
 })
-wow.init(); */
+wow.init();
 
 // }
