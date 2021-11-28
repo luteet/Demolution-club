@@ -83,13 +83,12 @@ const tariffSlider = new Swiper('.tariffs__block', {
       el: '.swiper-pagination',
       clickable: true,
     },
-
+    
     navigation: {
       nextEl: '.tariffs__block--arrow._next',
       prevEl: '.tariffs__block--arrow._prev',
     },
     breakpoints: {
-        // when window width is >= 320px
         1180: {
             slidesPerView: 2,
             spaceBetween: 72,
@@ -117,7 +116,6 @@ const reviewsSlider = new Swiper('.reviews__block', {
   },
 
   breakpoints: {
-      // when window width is >= 320px
       1180: {
           slidesPerView: 3,
       }
@@ -271,6 +269,8 @@ ctx.forEach(chartElem => {
 // =-=-=-=-=-=-=-= ГРАФИК } =-=-=-=-=-=-=-=
 
 
+// Media запросы {
+
 let windowSize = window.innerWidth, 
     resizeCheck = windowSize >= 768 ? false : true;
 
@@ -303,6 +303,10 @@ resize();
 
 window.onresize = resize;
 
+// Media запросы }
+
+
+// Изменение шапки при скролле {
 
   function getCoords(elem) {
     var box = elem.getBoundingClientRect();
@@ -355,6 +359,8 @@ window.onscroll = scrollPageFunc;
 }
 
 scrollPage();
+
+// Изменение шапки при скролле }
 
 
 // Анимация {
