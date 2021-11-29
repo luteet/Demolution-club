@@ -110,7 +110,7 @@ function loaded() {
 
   // =-=-=-=-=-=-=-= СЛАЙДЕРЫ { =-=-=-=-=-=-=-=
 
-/*   const tariffSlider = new Swiper('.tariffs__block', {
+  const tariffSlider = new Swiper('.tariffs__block', {
 
     spaceBetween: 15,
     slidesPerView: 1,
@@ -156,7 +156,7 @@ function loaded() {
         slidesPerView: 3,
       }
     }
-  }); */
+  });
 
   // =-=-=-=-=-=-=-= } СЛАЙДЕРЫ =-=-=-=-=-=-=-=
 
@@ -205,7 +205,7 @@ function loaded() {
 
 
   // =-=-=-=-=-=-=-= ГРАФИК { =-=-=-=-=-=-=-=
-/* 
+
   const ctx = document.querySelectorAll('._chart-element');
 
   ctx.forEach(chartElem => {
@@ -287,7 +287,7 @@ function loaded() {
 
     });
   });
- */
+
   // =-=-=-=-=-=-=-= ГРАФИК } =-=-=-=-=-=-=-=
 
 
