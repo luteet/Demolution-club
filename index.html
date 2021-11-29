@@ -175,9 +175,9 @@
                 </li>
             </ul>
             <div class="intro__video">
-                <!-- <video width="746" preload="none" autoplay muted loop class="intro__video--block lazy _lazy-load-video">
+                <video width="746" preload="none" autoplay muted loop class="intro__video--block lazy _lazy-load-video">
                     <source data-src="video/video.webm" src="#" type="video/webm">
-                </video> -->
+                </video>
             </div>
         </div>
     </section>
@@ -326,8 +326,10 @@
     </section>
     <section class="about-training" id="about-training-section">
         <div class="about-training__decor wow animate__fadeIn" data-wow-delay="1s">
-            <img src="img/about-training/decor-left.svg" style="width: 154px; left: 0; bottom: 15%;" width="0" loading="lazy" alt="" class="about-training__decor--item _desktop-decor-item">
-            <img src="img/about-training/decor-right.svg" style="width: 47px; right: 30px; bottom: 35%;" width="0" loading="lazy" alt="" class="about-training__decor--item _desktop-decor-item">
+            <picture>
+                <source srcset="img/about-training/decor-left.webp" type="image/webp">
+                <img src="img/about-training/decor-left.png" style="width: 154px; left: 0; bottom: 15%;" width="0" loading="lazy" alt="" class="about-training__decor--item _desktop-decor-item">
+            </picture>
             <picture>
                 <source srcset="img/about-training/decor-footer.webp" type="image/webp">
                 <img src="img/about-training/decor-footer.png" style="width: 100vw; min-width: 2760px; height: 291px; bottom: 0; left: 50%; transform: translate(-50%,15%);" width="0" loading="lazy" alt="" class="about-training__decor--item _footer-item">
@@ -1446,9 +1448,9 @@
                     </span>
                 </h2>
                 <div class="first-lesson__popup--video">
-                    <!-- <video width="746" preload="none" autoplay muted loop class="first-lesson__popup--video-item">
+                    <video width="746" preload="none" autoplay muted loop class="first-lesson__popup--video-item">
                         <source src="video/video.webm" type="video/webm">
-                    </video>  -->
+                    </video> 
                 </div>
                 <div class="first-lesson__popup--text">
                     <p>
