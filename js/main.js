@@ -72,7 +72,7 @@ if (e.target.classList.contains('_btn-to-scroll')) {
 
 function loaded() {
 
-  var lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
+ /*  var lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
 
   if ("IntersectionObserver" in window) {
     var lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
@@ -103,7 +103,7 @@ function loaded() {
     lazyVideos.forEach(function(lazyVideo) {
       lazyVideoObserver.observe(lazyVideo);
     });
-  }
+  } */
   
   
   // =-=-=-=-=-=-=-= СЛАЙДЕРЫ { =-=-=-=-=-=-=-=
@@ -208,85 +208,116 @@ function loaded() {
   // =-=-=-=-=-=-=-= ГРАФИК { =-=-=-=-=-=-=-=
   
   const ctx = document.querySelectorAll('._chart-element');
-  
+  ctx.font = "semibold 30px 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
   ctx.forEach(chartElem => {
   const chart = new Chart(chartElem.getContext('2d'), {
-    type: 'line',
-    data: {
-      labels: chartElem.dataset.chartLabels.split(','),
-      datasets: [
-        {
-          label: 'Минимальный процент дохода',
-          data: chartElem.dataset.chartMin.split(','),
-          backgroundColor: [
-            'rgba(24, 120, 198, 0.3)'
-          ],
-          borderColor: [
-            'rgba(24, 120, 198, 1)'
-          ],
-          pointRadius: 0,
-          borderWidth: 3,
-          cubicInterpolationMode: 'monotone',
-          tension: 0.4
-        },
-        {
-          label: 'Максимальный процент дохода',
-          data: chartElem.dataset.chartMax.split(','),
-          backgroundColor: [
-            'rgba(91, 239, 203, 0.3)'
-          ],
-          borderColor: [
-            'rgba(91, 239, 203, 1)'
-          ],
-          pointRadius: 0,
-          borderWidth: 2,
-          cubicInterpolationMode: 'monotone',
-          tension: 0.4
+      type: 'line',
+      data: {
+        labels: chartElem.dataset.chartLabels.split(','),
+        datasets: [
+          {
+            label: 'Минимальный процент дохода',
+            data: chartElem.dataset.chartMin.split(','),
+            backgroundColor: [
+              'rgba(24, 120, 198, 0.3)'
+            ],
+            borderColor: [
+              'rgba(24, 120, 198, 1)'
+            ],
+            pointRadius: 0,
+            borderWidth: 3,
+            cubicInterpolationMode: 'monotone',
+            tension: 0.4
+          },
+          {
+            label: 'Максимальный процент дохода',
+            data: chartElem.dataset.chartMax.split(','),
+            backgroundColor: [
+              'rgba(91, 239, 203, 0.3)'
+            ],
+            borderColor: [
+              'rgba(91, 239, 203, 1)'
+            ],
+            pointRadius: 0,
+            borderWidth: 2,
+            cubicInterpolationMode: 'monotone',
+            tension: 0.4
+          }
+        ]
+      },
+      /* defaults: {
+        global: {
+          defaultFontFamily='Times New Roman',
         }
-      ]
-    },
-    options: {
-  
-      scaleLineColor: "rgba(0,0,0,0)",
-      responsive: true,
-      plugins: {
-        legend: {
-          labels: {
-            usePointStyle: true,
-            font: {
-              size: 12,
+      }, */
+      options: {
+    
+        scaleLineColor: "rgba(0,0,0,0)",
+        responsive: true,
+        plugins: {
+          legend: {
+            labels: {
+              usePointStyle: true,
+              //padding: 10,
+              font: {
+                family: 'Montserrat',
+                size: 13,
+              },
+            },
+            
+          },
+          
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+    
+        scales: {
+          y: {
+            suggestedMin: 2000,
+            suggestedMax: 6500,
+           
+            ticks: {
+                font: {
+                    family: 'Montserrat',
+                    size: 13,
+                    weight: 'regular',
+                    padding: {
+                      left: 50,
+                    },
+                }
+            },
+            
+            grid: {
+              display: false,
+              borderWidth: 0,
             }
           },
+          x: {
+            ticks: {
+                font: {
+                    family: 'Montserrat',
+                    size: 11,
+                    padding: {
+                      left: 50,
+                    },
+                }
+            },
+            grid: {
+              display: false,
+              borderWidth: 0,
+            }
+          },
+    
+    
         }
-      },
-      interaction: {
-        intersect: false,
-        mode: 'index',
-      },
-  
-      scales: {
-        y: {
-          suggestedMin: 2000,
-          suggestedMax: 6500,
-  
-          grid: {
-            display: false,
-            borderWidth: 0,
-          }
-        },
-        x: {
-          grid: {
-            display: false,
-            borderWidth: 0,
-          }
-        },
-  
-  
+    
       }
-  
-    }
-  
-  });
+    
+    });
+    //chart.defaults.global.defaultFontFamily='Times New Roman';
+    //console.log(chart);
   });
   
   // =-=-=-=-=-=-=-= ГРАФИК } =-=-=-=-=-=-=-=
