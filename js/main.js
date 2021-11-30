@@ -72,7 +72,7 @@ if (e.target.classList.contains('_btn-to-scroll')) {
 
 function loaded() {
 
- /*  var lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
+  var lazyVideos = [].slice.call(document.querySelectorAll("video._lazy-load-video"));
 
   if ("IntersectionObserver" in window) {
     var lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
@@ -82,7 +82,7 @@ function loaded() {
             var videoSource = video.target.children[source];
             if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
               videoSource.src = videoSource.dataset.src;
-              
+              videoSource.removeAttribute('data-src');
             }
           }
   
@@ -103,7 +103,7 @@ function loaded() {
     lazyVideos.forEach(function(lazyVideo) {
       lazyVideoObserver.observe(lazyVideo);
     });
-  } */
+  }
   
   
   // =-=-=-=-=-=-=-= СЛАЙДЕРЫ { =-=-=-=-=-=-=-=
