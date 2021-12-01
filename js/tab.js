@@ -1,6 +1,8 @@
-function tab(elem) {
+export default function tab(arg) {
 
-    checkTabActive = true;
+    arg.checkTabActive = true;
+
+    let elem = arg.e.target;
 
     elem.closest('._tab-list').querySelectorAll('._tab-link').forEach(element => {
         element.classList.remove('_active');
@@ -19,7 +21,7 @@ function tab(elem) {
         tabBlockParent = tabBlock.parentNode;
         
         if(tabBlock.classList.contains('_active')) {
-            checkTabActive = false;
+            arg.checkTabActive = false;
             return false;
         }
 
@@ -49,10 +51,9 @@ function tab(elem) {
     setTimeout(function() {
         tabBlock.classList.add('_fade-in');
         
-        
         tabBlockParent.style.minHeight = '0px';
 
-        checkTabActive = false;
+        arg.checkTabActive = false;
 
     },500);
 

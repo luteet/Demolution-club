@@ -1,5 +1,4 @@
-/* import {galleryPopup} from 'gallery-popup.js'; */
-
+import popup from './popup.js';
 const body = document.querySelector('body'),
       html = document.querySelector('html'),
       menu = document.querySelectorAll('._burger, .header__nav, body'),
@@ -7,12 +6,8 @@ const body = document.querySelector('body'),
       header = document.querySelector('.header');
 
 
-
 const selectLists = document.querySelectorAll('._select-style')
 let checkTabActive = false;
-
-
-
 
 function galleryPopup(link) {
 
@@ -101,9 +96,15 @@ if (e.target.classList.contains('_tab-link') || e.target.parentNode.classList.co
 }
 
 // Попап
+
 if (e.target.classList.contains('_popup-btn') || e.target.parentNode.classList.contains('_popup-btn')) {
   e.preventDefault();
-  popup(e.target.getAttribute('href'));
+  popup({
+    id: e.target.getAttribute('href'),
+    html: html,
+    body: body,
+  })
+  //popup(e.target.getAttribute('href'));
 }
 
 // Галерея Попап

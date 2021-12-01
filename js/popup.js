@@ -1,12 +1,10 @@
-
-
-function popup(id) {
+export default function popup(arg) {
 
     let popup, popupBg, popupCloseBtn;
 
     try {
         
-        popup = document.querySelector(id);
+        popup = document.querySelector(arg.id);
         popupBg = popup.querySelector('._popup-bg');
         popupCloseBtn = popup.querySelector('._popup-close-btn');
 
@@ -14,9 +12,9 @@ function popup(id) {
         return false;
     }
 
-    html.style.setProperty('--popup-padding', window.innerWidth - body.offsetWidth + 'px');
+    arg.html.style.setProperty('--popup-padding', window.innerWidth - arg.body.offsetWidth + 'px');
     
-    body.classList.add('_popup-active');
+    arg.body.classList.add('_popup-active');
 
     
     
@@ -28,8 +26,8 @@ function popup(id) {
 
         popup.classList.remove('_active');
         setTimeout(function() {
-            body.classList.remove('_popup-active');
-            html.style.setProperty('--popup-padding', '0px');
+            arg.body.classList.remove('_popup-active');
+            arg.html.style.setProperty('--popup-padding', '0px');
         },200)
         
     }
@@ -59,5 +57,5 @@ function popup(id) {
 
 }
 
-
+//export default {popup};
 
