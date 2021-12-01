@@ -11,12 +11,21 @@ let checkTabActive = false;
 
 body.addEventListener('click', function (e) {
 
+  // Закрыть меню
+  if (e.target.classList.contains('header__nav--block')) {
+    menu.forEach(elem => {
+      elem.classList.remove('_active')
+    })
+  }
+
 // Меню в шапке
-if (e.target.classList.contains('_burger') || e.target.parentNode.classList.contains('_burger')) {
+if (e.target.classList.contains('_burger') || e.target.closest('._burger')) {
   menu.forEach(elem => {
     elem.classList.toggle('_active')
   })
 }
+
+
 
 // Выбор языка страницы
 if (e.target.classList.contains('_select-style-btn') || e.target.closest('._select-style-btn')) {
@@ -104,6 +113,18 @@ function loaded() {
       lazyVideoObserver.observe(lazyVideo);
     });
   }
+
+  /* const decorImg = document.querySelectorAll('._decor-img');
+
+  if(decorImg) {
+    decorImg.forEach(elem => {
+      elem.onmousedown = function (e) {
+          if (window.event.stopPropagation) window.event.stopPropagation();
+          window.event.cancelBubble = true;
+          e.cancelBubble = true;
+      }
+    })
+  } */
   
   
   // =-=-=-=-=-=-=-= СЛАЙДЕРЫ { =-=-=-=-=-=-=-=
@@ -425,9 +446,9 @@ window.onload = loaded
 
 // Анимация {
 
-  wow = new WOW({
-    mobile: false,
-    })
-    wow.init();
+  AOS.init({
+    offset: -300,
+    disable: 'mobile',
+  });
     
 // }
