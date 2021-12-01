@@ -172,19 +172,6 @@ function loaded() {
       lazyVideoObserver.observe(lazyVideo);
     });
   }
-
-  /* const decorImg = document.querySelectorAll('._decor-img');
-
-  if(decorImg) {
-    decorImg.forEach(elem => {
-      elem.onmousedown = function (e) {
-          if (window.event.stopPropagation) window.event.stopPropagation();
-          window.event.cancelBubble = true;
-          e.cancelBubble = true;
-      }
-    })
-  } */
-  
   
   // =-=-=-=-=-=-=-= СЛАЙДЕРЫ { =-=-=-=-=-=-=-=
   
@@ -192,7 +179,7 @@ function loaded() {
   
   spaceBetween: 15,
   slidesPerView: 1,
-  
+  grabCursor: true,
   pagination: {
     el: '.swiper-pagination',
     clickable: true,
