@@ -161,10 +161,22 @@ function loaded() {
   
   
   const reviewsSlider = new Swiper('.reviews__block', {
-  
+  grabCursor: true,
   spaceBetween: 0,
   slidesPerView: 1,
   centeredSlides: true,
+  loop: true,
+  effect: "creative",
+  creativeEffect: {
+    prev: {
+      
+      translate: ["-120%", 0, -500],
+    },
+    next: {
+      
+      translate: ["120%", 0, -500],
+    },
+  },
   
   navigation: {
     nextEl: '.reviews__item--slider-arrow._next',
@@ -228,7 +240,72 @@ function loaded() {
   
   // =-=-=-=-=-=-=-= ГРАФИК { =-=-=-=-=-=-=-=
   
-  const ctx = document.querySelectorAll('._chart-element');
+  const ctx = document.querySelectorAll('._chart-element'),
+        legendList = document.getElementById('legend-list');
+
+  function sampleLegeng(arg) {
+    
+    let liLegend = document.createElement('li'),
+        btnLegend = document.createElement('button'),
+        lineLegend = document.createElement('span'),
+        nameLegend = document.createElement('span');
+
+        liLegend.classList.add('statistics__chart--item');
+        btnLegend.classList.add('statistics__chart--item-btn');
+        lineLegend.classList.add('statistics__chart--item-line', '_icon-mode');
+        nameLegend.classList.add('statistics__chart--item-name');
+
+        nameLegend.innerText = arg.label;
+
+        liLegend.appendChild(btnLegend);
+        btnLegend.appendChild(lineLegend);
+        btnLegend.appendChild(nameLegend);
+
+        btnLegend.dataset.label = arg.id;
+
+        arg.active ? btnLegend.classList.add(arg.active) : false;
+
+      
+        btnLegend.addEventListener('click', function() {
+          let btnList = document.querySelectorAll('.statistics__chart--item-btn');
+          if(this.dataset.label != 'false' && !this.classList.contains('_active')) {
+            
+            btnList.forEach(e => {
+              e.classList.remove('_active');
+              
+              if(e.dataset.label != 'false') {
+                if(!arg.chart.isDatasetVisible(Number(e.dataset.label))) {
+                  arg.chart.show(Number(e.dataset.label));
+                }
+                
+              }
+            })
+            
+            this.classList.add('_active');
+            arg.chart.hide(Number(this.dataset.label));
+            
+            
+          } else if(this.dataset.label == 'false' && !this.classList.contains('_active')) {
+
+            btnList.forEach(e => {
+              e.classList.remove('_active');
+              
+              if(e.dataset.label != 'false') {
+
+                arg.chart.show(Number(e.dataset.label));
+
+              }
+            })
+
+            this.classList.add('_active');
+            
+          }
+          
+        })
+          
+        return liLegend;
+  }
+
   ctx.font = "semibold 30px 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
   ctx.forEach(chartElem => {
   const chart = new Chart(chartElem.getContext('2d'), {
@@ -266,26 +343,13 @@ function loaded() {
           }
         ]
       },
-      /* defaults: {
-        global: {
-          defaultFontFamily='Times New Roman',
-        }
-      }, */
       options: {
     
         scaleLineColor: "rgba(0,0,0,0)",
         responsive: true,
         plugins: {
           legend: {
-            labels: {
-              usePointStyle: true,
-              //padding: 10,
-              font: {
-                family: 'Montserrat',
-                size: 13,
-              },
-            },
-            
+            display: false,
           },
           
         },
@@ -337,8 +401,29 @@ function loaded() {
       }
     
     });
-    //chart.defaults.global.defaultFontFamily='Times New Roman';
-    //console.log(chart);
+
+    legendList.appendChild(sampleLegeng({
+      label: 'Все доходы',
+      id: false,
+      active: '_active',
+      chart: chart,
+    }));
+
+    let count = chart.config.data.datasets.length-1;
+    
+
+    chart.config.data.datasets.forEach(elem => {
+
+      legendList.appendChild(sampleLegeng({
+        label: elem.label,
+        id: count,
+        chart: chart,
+      }));
+
+      count--;
+
+    })
+
   });
   
   // =-=-=-=-=-=-=-= ГРАФИК } =-=-=-=-=-=-=-=
