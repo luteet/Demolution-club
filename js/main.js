@@ -1,13 +1,64 @@
+/* import {galleryPopup} from 'gallery-popup.js'; */
+
 const body = document.querySelector('body'),
-html = document.querySelector('html'),
-menu = document.querySelectorAll('._burger, .header__nav, body'),
-burger = document.querySelector('._burger'),
-header = document.querySelector('.header');
+      html = document.querySelector('html'),
+      menu = document.querySelectorAll('._burger, .header__nav, body'),
+      burger = document.querySelector('._burger'),
+      header = document.querySelector('.header');
 
 
 
 const selectLists = document.querySelectorAll('._select-style')
 let checkTabActive = false;
+
+
+
+
+function galleryPopup(link) {
+
+  let galleryPopupBlock = 
+    `
+    <div class="_gallery-popup _hidden">
+        <div class="_gallery-popup-bg"></div>
+        <div class="_gallery-popup-body _gallery-popup-max">
+            <button type="button" class="_gallery-popup-close-btn">
+                ×
+            </button>
+            <img src="${link.href}" class="_gallery-popup-img" loading="lazy">
+        </div>
+    </div>
+    `;
+
+    body.insertAdjacentHTML('beforeend', galleryPopupBlock);
+    html.style.setProperty('--popup-padding', window.innerWidth - body.offsetWidth + 'px');
+    body.classList.add('_popup-active');
+    
+
+    let galleryPopup = document.querySelector('._gallery-popup');
+
+    setTimeout(function() {
+      galleryPopup.classList.remove('_hidden');
+    },200);
+
+    function removeGalleryPopup() {
+      galleryPopup.classList.add('_hidden');
+      setTimeout(function() {
+        body.removeChild(galleryPopup);
+        body.classList.remove('_popup-active');
+        html.style.setProperty('--popup-padding', '0px');
+      },200);
+    }
+
+    galleryPopup.querySelector('._gallery-popup-close-btn').addEventListener('click', function() {
+      removeGalleryPopup();
+    });
+    galleryPopup.querySelector('._gallery-popup-bg').addEventListener('click', function() {
+      removeGalleryPopup();
+    });
+
+}
+
+
 
 body.addEventListener('click', function (e) {
 
@@ -32,8 +83,6 @@ if (e.target.classList.contains('_select-style-btn') || e.target.closest('._sele
 
   if (e.target.closest('._select-style-btn')) {
     const parent = e.target.closest('._select-style');
-
-    //parent.querySelector('._select-style-btn').classList.toggle('_active');
     parent.classList.toggle('_active');
 
   }
@@ -55,6 +104,16 @@ if (e.target.classList.contains('_tab-link') || e.target.parentNode.classList.co
 if (e.target.classList.contains('_popup-btn') || e.target.parentNode.classList.contains('_popup-btn')) {
   e.preventDefault();
   popup(e.target.getAttribute('href'));
+}
+
+// Галерея Попап
+if (e.target.classList.contains('_gallery-popup-link') || e.target.closest('._gallery-popup-link')) {
+  let link = (e.target.closest('._gallery-popup-link')) ? e.target.closest('._gallery-popup-link') : e.target
+  
+  e.preventDefault()
+  console.log(link);
+  galleryPopup(link);
+  
 }
 
 // Скролл к секциям
@@ -160,40 +219,15 @@ function loaded() {
   });
   
   
-  const reviewsSlider = new Swiper('.reviews__block', {
-  grabCursor: true,
-  spaceBetween: 0,
-  slidesPerView: 1,
-  centeredSlides: true,
-  loop: true,
-  effect: "creative",
-  creativeEffect: {
-    prev: {
-      
-      translate: ["-120%", 0, -500],
-    },
-    next: {
-      
-      translate: ["120%", 0, -500],
-    },
-  },
-  
-  navigation: {
-    nextEl: '.reviews__item--slider-arrow._next',
-    prevEl: '.reviews__item--slider-arrow._prev',
-  },
-  
-  breakpoints: {
-    1180: {
-      slidesPerView: 3,
-    }
-  }
-  });
+  let reviewsSlider;
   
   
   
   // =-=-=-=-=-=-=-= } СЛАЙДЕРЫ =-=-=-=-=-=-=-=
   
+
+  
+
   
   // =-=-=-=-=-=-=-= ТАЙМЕР { =-=-=-=-=-=-=-=
   
@@ -447,10 +481,56 @@ function loaded() {
       headerNavBody.prepend(appendBlock);
       appendBlock.classList.add('_visible');
     }
+
+    if(reviewsSlider) reviewsSlider.destroy();
+    reviewsSlider = new Swiper('.reviews__block', {
+  
+      spaceBetween: 0,
+      slidesPerView: 1,
+      centeredSlides: true,
+      loop: true,
+      effect: "creative",
+      grabCursor: true,
+      creativeEffect: {
+        prev: {      
+          translate: ["-120%", 0, -500],
+        },
+        next: {          
+          translate: ["120%", 0, -500],
+        },
+      },
+      
+      
+      navigation: {
+        nextEl: '.reviews__item--slider-arrow._next',
+        prevEl: '.reviews__item--slider-arrow._prev',
+      },
+      breakpoints: {
+        992: {
+          slidesPerView: 3,
+        },
+      }
+    });
   
   } else if (windowSize < 768 && resizeCheck == true) {
     resizeCheck = false;
+
+    if(reviewsSlider) reviewsSlider.destroy();
+    reviewsSlider = new Swiper('.reviews__block', {
   
+      spaceBetween: 0,
+      slidesPerView: 1,
+      centeredSlides: true,
+      loop: true,
+      
+      navigation: {
+        nextEl: '.reviews__item--slider-arrow._next',
+        prevEl: '.reviews__item--slider-arrow._prev',
+      },
+      
+      
+    });
+
     if (appendBlock) {
       headerNavBlockBody.prepend(appendBlock);
       appendBlock.classList.add('_visible');
@@ -534,6 +614,7 @@ window.onload = loaded
   AOS.init({
     offset: -300,
     disable: 'mobile',
+    duration: 600,
   });
     
 // }
