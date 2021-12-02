@@ -33,95 +33,99 @@ body.addEventListener('click', function (e) {
 
 
 
-
-// Меню в шапке
-if (e.target.classList.contains('_burger') || e.target.closest('._burger')) {
-  menu.forEach(elem => {
-    elem.classList.toggle('_active')
-  })
-}
+  
 
 
+  // Меню в шапке
+  if (e.target.classList.contains('_burger') || e.target.closest('._burger')) {
+    menu.forEach(elem => {
+      elem.classList.toggle('_active')
+    })
+  }
 
 
-// Выбор языка страницы
-if (e.target.classList.contains('_select-style-btn') || e.target.closest('._select-style-btn')) {
 
-  if (e.target.closest('._select-style-btn')) {
-    const parent = e.target.closest('._select-style');
-    parent.classList.toggle('_active');
+
+  // Выбор языка страницы
+  if (e.target.classList.contains('_select-style-btn') || e.target.closest('._select-style-btn')) {
+
+    if (e.target.closest('._select-style-btn')) {
+      const parent = e.target.closest('._select-style');
+      parent.classList.toggle('_active');
+
+    }
+
+  } else if (!e.target.closest('._select-style')) {
+    try {
+      document.querySelector('._select-style').classList.remove('_active');
+    } catch { }
 
   }
 
-} else if (!e.target.closest('._select-style')) {
-  try {
-    document.querySelector('._select-style').classList.remove('_active');
-  } catch { }
-
-}
 
 
 
 
-
-// Табы
-if (e.target.classList.contains('_tab-link') || e.target.parentNode.classList.contains('_tab-link') && checkTabActive == false) {
-  e.preventDefault();
-  tab({
-    checkTabActive: checkTabActive,
-    e: e,
-  });
-}
+  // Табы
+  if (e.target.classList.contains('_tab-link') || e.target.parentNode.classList.contains('_tab-link') && checkTabActive == false) {
+    e.preventDefault();
+    tab({
+      checkTabActive: checkTabActive,
+      e: e,
+    });
+  }
 
 
 
 
 
 
-// Попап
+  // Попап
 
-if (e.target.classList.contains('_popup-btn') || e.target.parentNode.classList.contains('_popup-btn')) {
-  e.preventDefault();
-  popup({
-    id: e.target.getAttribute('href'),
-    html: html,
-    body: body,
-  })
-}
-
-
-
-
-
-
-// Галерея Попап
-if (e.target.classList.contains('_gallery-popup-link') || e.target.closest('._gallery-popup-link')) {
-  let link = (e.target.closest('._gallery-popup-link')) ? e.target.closest('._gallery-popup-link') : e.target
-  
-  e.preventDefault()
-  galleryPopup({
-      link: link,
+  if (e.target.classList.contains('_popup-btn') || e.target.closest('._popup-btn')) {
+    e.preventDefault();
+    
+    popup({
+      id: e.target.getAttribute('href'),
       html: html,
       body: body,
-  });
-  
-}
-
-
-
-
-
-
-// Скролл к секциям
-if (e.target.classList.contains('_btn-to-scroll')) {
-
-    scrollToSection({
-        e: e,
-        menu: menu,
-        header: header,
     })
 
-}
+  }
+
+
+
+
+
+
+  // Галерея Попап
+  if (e.target.classList.contains('_gallery-popup-link') || e.target.closest('._gallery-popup-link')) {
+    let link = (e.target.closest('._gallery-popup-link')) ? e.target.closest('._gallery-popup-link') : e.target
+    
+    e.preventDefault()
+    galleryPopup({
+        link: link,
+        html: html,
+        body: body,
+    });
+    
+  }
+
+
+
+
+
+
+  // Скролл к секциям
+  if (e.target.classList.contains('_btn-to-scroll')) {
+
+      scrollToSection({
+          e: e,
+          menu: menu,
+          header: header,
+      })
+
+  }
 
 
 
