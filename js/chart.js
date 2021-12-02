@@ -109,8 +109,10 @@ export default function chart() {
         plugins: {
         legend: {
             display: false,
-        },
-        
+            font: {
+                size: 11
+            }
+            },
         },
         interaction: {
         intersect: false,
@@ -124,12 +126,10 @@ export default function chart() {
         
             ticks: {
                 font: {
-                    family: 'Montserrat',
-                    size: 13,
-                    weight: 'regular',
-                    padding: {
-                    left: 50,
-                    },
+                    family: "'Montserrat', sans-serif",
+                    padding: -30,
+                    labelOffset: 50,
+                    lineHeight: 1.5
                 }
             },
             
@@ -141,8 +141,8 @@ export default function chart() {
         x: {
             ticks: {
                 font: {
-                    family: 'Montserrat',
-                    size: 11,
+                    family: "'Montserrat', sans-serif",
+                    //size: 11,
                     padding: {
                     left: 50,
                     },
