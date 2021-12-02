@@ -139,6 +139,7 @@ if (e.target.classList.contains('_btn-to-scroll')) {
 
 })
 
+
 function loaded() {
 
   var lazyVideos = [].slice.call(document.querySelectorAll("video._lazy-load-video"));

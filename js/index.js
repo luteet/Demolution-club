@@ -131,12 +131,8 @@ if (e.target.classList.contains('_btn-to-scroll')) {
 })
 
 
-
-
-
-function loaded() {
-
-    lazyLoadForVideo();
+document.addEventListener('DOMContentLoaded', function() {
+  lazyLoadForVideo();
   
   // =-=-=-=-=-=-=-= СЛАЙДЕРЫ { =-=-=-=-=-=-=-=
   
@@ -180,7 +176,6 @@ function loaded() {
     }
 
     sliders.reviewsSlider.desktopMode();
-    
   
     } else if (windowSize < 768 && resizeCheck == true) {
         resizeCheck = false;
@@ -210,6 +205,12 @@ function loaded() {
   
   // Изменение шапки при скролле }
   
+
+});
+
+
+function loaded() {
+
 
 }
 
