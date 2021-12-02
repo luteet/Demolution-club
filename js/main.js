@@ -602,7 +602,8 @@ window.onload = loaded
 
   AOS.init({
     offset: -300,
-    disable: 'mobile',
+    
+    //disable: 'mobile',
     duration: 600,
   });
     

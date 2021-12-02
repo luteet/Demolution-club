@@ -219,9 +219,13 @@ window.onload = loaded
 // Анимация {
 
   AOS.init({
-    offset: -300,
-    disable: 'mobile',
+    //offset: 0,
+    //disable: 'mobile',
     duration: 600,
+    //anchorPlacement: 'bottom-bottom', 
   });
     
 // }
+
+// data-aos-anchor-placement="top-center"
+// data-aos-anchor=".levels-training__container"
