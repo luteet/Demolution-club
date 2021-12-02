@@ -601,9 +601,6 @@ window.onload = loaded
 // Анимация {
 
   AOS.init({
-    offset: -300,
-    
-    //disable: 'mobile',
     duration: 600,
   });
     

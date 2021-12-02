@@ -12,15 +12,14 @@ import headerToggle from './headerToggle.js';
 const body = document.querySelector('body'),
       html = document.querySelector('html'),
       menu = document.querySelectorAll('._burger, .header__nav, body'),
-      burger = document.querySelector('._burger'),
       header = document.querySelector('.header');
 
 
-const selectLists = document.querySelectorAll('._select-style')
 let checkTabActive = false;
 
 
 body.addEventListener('click', function (e) {
+
 
 
 
@@ -42,6 +41,8 @@ body.addEventListener('click', function (e) {
       elem.classList.toggle('_active')
     })
   }
+
+
 
 
 
@@ -223,10 +224,7 @@ window.onload = loaded
 // Анимация {
 
   AOS.init({
-    //offset: 0,
-    //disable: 'mobile',
     duration: 600,
-    //anchorPlacement: 'bottom-bottom', 
   });
     
 // }
