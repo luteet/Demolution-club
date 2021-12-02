@@ -1,6 +1,8 @@
 export default function popup(arg) {
 
-    let popup, popupBg, popupCloseBtn;
+    let popup, popupBg, popupCloseBtn, 
+    body = arg.body,
+    html = arg.html;
 
     try {
         
@@ -12,22 +14,23 @@ export default function popup(arg) {
         return false;
     }
 
-    arg.html.style.setProperty('--popup-padding', window.innerWidth - arg.body.offsetWidth + 'px');
+    html.style.setProperty('--popup-padding', window.innerWidth - body.offsetWidth + 'px');
     
-    arg.body.classList.add('_popup-active');
+    body.classList.add('_popup-active');
 
-    
-    
-    //window.location.hash = id;
+    if(popup.classList.contains('_hidden')) popup.classList.remove('_hidden');
 
-    popup.classList.add('_active');
+    //popup.style.transition = 'all .2s ease-in-out';
+    setTimeout(function () {
+        popup.classList.add('_active');    
+    },200)
 
     function removeFunc() {
 
         popup.classList.remove('_active');
         setTimeout(function() {
-            arg.body.classList.remove('_popup-active');
-            arg.html.style.setProperty('--popup-padding', '0px');
+            body.classList.remove('_popup-active');
+            html.style.setProperty('--popup-padding', '0px');
         },200)
         
     }
