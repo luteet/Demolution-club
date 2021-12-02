@@ -227,5 +227,3 @@ window.onload = loaded
     
 // }
 
-// data-aos-anchor-placement="top-center"
-// data-aos-anchor=".levels-training__container"
