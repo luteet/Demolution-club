@@ -1,5 +1,7 @@
 let resizeCheckVideo = {};
 
+
+
 let videoBlock = document.querySelector('.intro__video--block'),
     videoPreview = document.querySelector('.intro__video--block-preview'),
     videoBlockSource = videoBlock.querySelector('source'),
