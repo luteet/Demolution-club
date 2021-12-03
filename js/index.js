@@ -226,15 +226,18 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   if(!md.is('iPhone')) {
+    
     document.querySelector('.intro__video--block').style.display = 'block';
     document.querySelector('.intro__video--block-preview').style.display = 'block';
+    document.querySelector('.intro__video--block-alt-img').style.display = 'none';
+
     videoResizeCheck(windowSize);
   } else {
     if(iphoneCheck == false) {
       iphoneCheck = true;
 
       
-      document.querySelector('.intro__video--block-alt-img').style.display = 'block';
+      
 
     }
   }
