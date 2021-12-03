@@ -89,7 +89,7 @@ export default function videoResizeCheck(windowSize) {
                     function () {
                         loadVideo(videoBlock, videoBlockSource, videoBlockSourceList[videoBlockSourceListArray[i]]);
 
-                    });
+                });
             }
 
         } else if (videoBlockSourceListArray[i].slice(4) == 'start' && resizeCheckVideo['video-init'] == undefined) {
