@@ -149,8 +149,17 @@ document.addEventListener('DOMContentLoaded', function() {
   
   
   // =-=-=-=-=-=-=-= ТАЙМЕР { =-=-=-=-=-=-=-=
+
+  let timerId = setInterval(timer, 1000);
+
   
-  timer();
+  window.onfocus = function () {
+    timerId = setInterval(timer, 1000);
+  }
+  window.onblur = function () {
+    clearInterval(timerId);
+  }
+  
   
   
   // =-=-=-=-=-=-=-= ТАЙМЕР } =-=-=-=-=-=-=-=
