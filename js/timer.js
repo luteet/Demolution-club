@@ -11,7 +11,7 @@ export default function timer() {
         Number(timerElem.getAttribute('data-date-month') - 1),
         timerElem.getAttribute('data-date-day'),
         timerElem.getAttribute('data-date-hour'),
-        timerElem.getAttribute('data-date-minute'));
+        Number(timerElem.getAttribute('data-date-minute')) + 1);
     
       const day = timerElem.querySelector('.tariffs__item--timer-day .tariffs__item--timer-value'),
         hour = timerElem.querySelector('.tariffs__item--timer-hours .tariffs__item--timer-value'),
