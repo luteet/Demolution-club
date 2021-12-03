@@ -8,7 +8,7 @@ export default function timer() {
       deadline = new Date(
     
         timerElem.getAttribute('data-date-year'),
-        timerElem.getAttribute('data-date-month'),
+        Number(timerElem.getAttribute('data-date-month') - 1),
         timerElem.getAttribute('data-date-day'),
         timerElem.getAttribute('data-date-hour'),
         timerElem.getAttribute('data-date-minute'));
