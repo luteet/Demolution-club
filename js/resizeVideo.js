@@ -12,6 +12,12 @@ for (let i in videoBlockSourceList) {
     counterForVideo++;
 }
 
+var md = new MobileDetect(window.navigator.userAgent);
+
+
+//console.log(md.is('iPhone'));
+
+
 function loadVideo(videoBlock, videoSource, src) {
 
     if ("IntersectionObserver" in window) {
@@ -64,69 +70,64 @@ function resizeVideoCheckFunc(windowSize, resizeCheckVideo, size, minWidth, maxW
 let loadVideoCheck = false;
 export default function videoResizeCheck(windowSize) {
 
-    for (let i = videoBlockSourceListArray.length - 1; i >= 0; i--) {
+    
 
+        for (let i = videoBlockSourceListArray.length - 1; i >= 0; i--) {
         
-        if (videoBlockSourceListArray[i].slice(4) != 'start') {
-
-            if (Number(videoBlockSourceListArray[i].slice(4)) > windowSize && resizeCheckVideo['video-init'] == undefined) {
-
-                for (let j = i; j >= 1; j--) {
-                    resizeCheckVideo[videoBlockSourceListArray[j].slice(4)] = false;
+            if (videoBlockSourceListArray[i].slice(4) != 'start') {
+    
+                if (Number(videoBlockSourceListArray[i].slice(4)) > windowSize && resizeCheckVideo['video-init'] == undefined) {
+    
+                    for (let j = i; j >= 1; j--) {
+                        resizeCheckVideo[videoBlockSourceListArray[j].slice(4)] = false;
+                    }
+    
+                    loadVideo(videoBlock, videoBlockSource, videoBlockSourceList[videoBlockSourceListArray[i]]);
+                    resizeCheckVideo['video-init'] = true;
+                    resizeCheckVideo['start'] = false;
+    
+                    break;
+    
                 }
+                else if (resizeCheckVideo['video-init'] != undefined) {
+                    
+                    resizeVideoCheckFunc(windowSize, resizeCheckVideo, Number(videoBlockSourceListArray[i].slice(4)),
+    
+                        function () {
 
-                loadVideo(videoBlock, videoBlockSource, videoBlockSourceList[videoBlockSourceListArray[i]]);
-                resizeCheckVideo['video-init'] = true;
-                resizeCheckVideo['start'] = false;
-
-                break;
-
-
-            }
-            else if (resizeCheckVideo['video-init'] != undefined) {
-                
-                resizeVideoCheckFunc(windowSize, resizeCheckVideo, Number(videoBlockSourceListArray[i].slice(4)),
-
-                    function () {
-                        //console.log(i + ' == ' + (videoBlockSourceListArray.length - 1));
-                        if(loadVideoCheck == false) {
-                            loadVideoCheck = true;
-                            
-                            loadVideo(videoBlock, videoBlockSource, videoBlockSourceList[videoBlockSourceListArray[i-1]]);
-
-                            /* if(resizeCheckVideo['start'] == false && i == videoBlockSourceListArray.length) {
-                                loadVideo(videoBlock, videoBlockSource, videoBlockSourceList[videoBlockSourceListArray[0]]);
-                            } else if(resizeCheckVideo[videoBlockSourceListArray[i-1].slice(4)] != undefined) {
+                            if(loadVideoCheck == false) {
+                                loadVideoCheck = true;
+                                
                                 loadVideo(videoBlock, videoBlockSource, videoBlockSourceList[videoBlockSourceListArray[i-1]]);
-                            } */
-                        }
-                        
-                        
 
-                    },
-                    function () {
-                        loadVideo(videoBlock, videoBlockSource, videoBlockSourceList[videoBlockSourceListArray[i]]);
-                        //resizeCheckVideo['start'] = false;
-                        //resizeCheckVideo['start'] = true;
-                });
+                            }
 
-            }
-
-        } else if (videoBlockSourceListArray[i].slice(4) == 'start' && resizeCheckVideo['video-init'] == undefined) {
-            resizeCheckVideo['video-init'] = true;
-            resizeCheckVideo['start'] = true;
-            loadVideo(videoBlock, videoBlockSource, videoBlockSourceList[videoBlockSourceListArray[i]]);
-
-            
-            for (let j = 1; j < videoBlockSourceListArray.length; j++) {
+                        },
+                        function () {
+                            loadVideo(videoBlock, videoBlockSource, videoBlockSourceList[videoBlockSourceListArray[i]]);
+                    });
+    
+                }
+    
+            } else if (videoBlockSourceListArray[i].slice(4) == 'start' && resizeCheckVideo['video-init'] == undefined) {
+                resizeCheckVideo['video-init'] = true;
+                resizeCheckVideo['start'] = true;
+                loadVideo(videoBlock, videoBlockSource, videoBlockSourceList[videoBlockSourceListArray[i]]);
+    
                 
-                resizeCheckVideo[videoBlockSourceListArray[j].slice(4)] = true;
+                for (let j = 1; j < videoBlockSourceListArray.length; j++) {
+                    
+                    resizeCheckVideo[videoBlockSourceListArray[j].slice(4)] = true;
+                }
+    
+                
             }
-
-            
+    
         }
 
-    }
+    
+
+    
 
     loadVideoCheck = false;
 }
