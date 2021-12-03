@@ -2,11 +2,12 @@ import tab from './tab.js';
 import popup from './popup.js';
 import galleryPopup from './gallery-popup.js';
 import scrollToSection from './scrollToSection.js';
-import lazyLoadForVideo from './lazyLoadForVideo.js';
 import * as sliders from './sliders.js';
 import timer from './timer.js';
 import chart from './chart.js';
+import videoResizeCheck from './resizeVideo.js';
 import headerToggle from './headerToggle.js';
+
 
 
 const body = document.querySelector('body'),
@@ -137,7 +138,7 @@ body.addEventListener('click', function (e) {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  lazyLoadForVideo();
+  
   
   // =-=-=-=-=-=-=-= СЛАЙДЕРЫ { =-=-=-=-=-=-=-=
   
@@ -162,42 +163,72 @@ document.addEventListener('DOMContentLoaded', function() {
   
   
   // Media запросы {
-  
+
+  function debounce(func, time){
+    var time = time || 100;
+    var timer;
+    return function(event){
+        if(timer) clearTimeout(timer);
+        timer = setTimeout(func, time, event);
+    };
+  }
+
   let windowSize = window.innerWidth,
-  resizeCheck = windowSize >= 768 ? false : true;
+  resizeCheck = {};
   
   let appendBlock = document.querySelector('._append-to-menu'),
       headerNavBody = document.querySelector('.header__nav--body'),
       headerNavBlockBody = document.querySelector('.header__nav--block-body');
+
   
-  function resize() {
-  windowSize = window.innerWidth;
-  if (windowSize >= 768 && resizeCheck == false) {
-    resizeCheck = true;
-  
-    if (appendBlock) {
-      headerNavBody.prepend(appendBlock);
-      appendBlock.classList.add('_visible');
+  function resizeCheckFunc(size, minWidth, maxWidth) {
+    if(windowSize >= size && (resizeCheck[String(size)] == false || resizeCheck[String(size)] == undefined)) {
+      resizeCheck[String(size)] = true;
+
+      minWidth(); // > size
+
+    } else if(windowSize <= size && (resizeCheck[String(size)] == true || resizeCheck[String(size)] == undefined)) {
+      resizeCheck[String(size)] = false;
+      maxWidth(); // < size
+
     }
+  }
 
-    sliders.reviewsSlider.desktopMode();
-  
-    } else if (windowSize < 768 && resizeCheck == true) {
-        resizeCheck = false;
 
-        if (appendBlock) {
-            headerNavBlockBody.prepend(appendBlock);
-            appendBlock.classList.add('_visible');
-        }
+  function resize() {
+    
+  windowSize = window.innerWidth;
+
+  resizeCheckFunc(768, 
+    function () {
+
+      if (appendBlock) {
+        headerNavBody.prepend(appendBlock);
+        appendBlock.classList.add('_visible');
+      }
+
+      sliders.reviewsSlider.desktopMode();
+
+    },
+    function () {
+      
+      if (appendBlock) {
+          headerNavBlockBody.prepend(appendBlock);
+          appendBlock.classList.add('_visible');
+      }
 
         sliders.reviewsSlider.tableMode();
-    
-    }
+      
+  });
+
+  videoResizeCheck(windowSize);
+  
+
   }
   
   resize();
   
-  window.onresize = resize;
+  window.addEventListener("resize", debounce( resize, 150 ));
   
   // Media запросы }
   
@@ -214,12 +245,23 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-function loaded() {
+/* function loaded() {
 
 
 }
 
-window.onload = loaded
+window.onload = loaded */
+
+
+
+// Function with stuff to execute
+/* function resizeContent() {
+  // Do loads of stuff once window has resized
+  console.log('resized');
+}
+ */
+// Eventlistener
+
 
 // Анимация {
 
