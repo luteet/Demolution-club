@@ -14,11 +14,6 @@ for (let i in videoBlockSourceList) {
     counterForVideo++;
 }
 
-var md = new MobileDetect(window.navigator.userAgent);
-
-
-//console.log(md.is('iPhone'));
-
 
 function loadVideo(videoBlock, videoSource, src) {
 

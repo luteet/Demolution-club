@@ -187,7 +187,5 @@ export default function chart() {
 
         })
 
-        console.log(chart);
-
     });
 }

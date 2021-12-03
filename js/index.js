@@ -177,7 +177,6 @@ document.addEventListener('DOMContentLoaded', function() {
   var md = new MobileDetect(window.navigator.userAgent);
 
   let windowSize = window.innerWidth,
-  iphoneCheck = false,
   resizeCheck = {};
   
   let appendBlock = document.querySelector('._append-to-menu'),
@@ -226,20 +225,13 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   if(!md.is('iPhone')) {
-    
+
     document.querySelector('.intro__video--block').style.display = 'block';
     document.querySelector('.intro__video--block-preview').style.display = 'block';
-    document.querySelector('.intro__video--block-alt-img').style.display = 'none';
+    document.querySelector('.intro__video--block-alt').style.display = 'none';
 
     videoResizeCheck(windowSize);
-  } else {
-    if(iphoneCheck == false) {
-      iphoneCheck = true;
 
-      
-      
-
-    }
   }
 
   
