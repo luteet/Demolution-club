@@ -152,6 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   timer();
   
+  
   // =-=-=-=-=-=-=-= ТАЙМЕР } =-=-=-=-=-=-=-=
   
   
