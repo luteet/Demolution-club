@@ -112,7 +112,6 @@ if (e.target.classList.contains('_gallery-popup-link') || e.target.closest('._ga
   let link = (e.target.closest('._gallery-popup-link')) ? e.target.closest('._gallery-popup-link') : e.target
   
   e.preventDefault()
-  console.log(link);
   galleryPopup(link);
   
 }

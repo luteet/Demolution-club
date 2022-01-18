@@ -1,12 +1,19 @@
+
 let resizeCheckVideo = {};
 
 
 
 let videoBlock = document.querySelector('.intro__video--block'),
     videoPreview = document.querySelector('.intro__video--block-preview'),
-    videoBlockSource = videoBlock.querySelector('source'),
-    videoBlockSourceList = videoBlockSource.dataset,
+    videoBlockSource,
+    videoBlockSourceList,
+    videoBlockSourceListArray;
+
+if(videoBlock) {
+    videoBlockSource = videoBlock.querySelector('source');
+    videoBlockSourceList = videoBlockSource.dataset;
     videoBlockSourceListArray = [];
+}
 
 let counterForVideo = 0;
 for (let i in videoBlockSourceList) {
@@ -66,9 +73,7 @@ function resizeVideoCheckFunc(windowSize, resizeCheckVideo, size, minWidth, maxW
 
 let loadVideoCheck = false;
 export default function videoResizeCheck(windowSize) {
-
-    
-
+    if(videoBlock) {
         for (let i = videoBlockSourceListArray.length - 1; i >= 0; i--) {
         
             if (videoBlockSourceListArray[i].slice(4) != 'start') {
@@ -121,10 +126,7 @@ export default function videoResizeCheck(windowSize) {
             }
     
         }
-
-    
-
-    
+    }
 
     loadVideoCheck = false;
 }

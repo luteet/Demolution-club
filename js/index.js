@@ -219,7 +219,12 @@ document.addEventListener('DOMContentLoaded', function() {
         appendBlock.classList.add('_visible');
       }
 
-      sliders.reviewsSlider.desktopMode();
+      try {
+        sliders.reviewsSlider.desktopMode();
+      } catch {
+
+      }
+      
 
     },
     function () {
@@ -229,17 +234,27 @@ document.addEventListener('DOMContentLoaded', function() {
           appendBlock.classList.add('_visible');
       }
 
+      try {
         sliders.reviewsSlider.tableMode();
+      } catch {
+
+      }
+        
       
   });
   
-  if(!md.is('iPhone')) {
+  if(!md.is('iPhone') && document.querySelector('.intro__video--block')) {
 
     document.querySelector('.intro__video--block').style.display = 'block';
     document.querySelector('.intro__video--block-preview').style.display = 'block';
     document.querySelector('.intro__video--block-alt').style.display = 'none';
 
-    videoResizeCheck(windowSize);
+    try {
+      videoResizeCheck(windowSize);
+    } catch {
+
+    }
+    
 
   }
 
