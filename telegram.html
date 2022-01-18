@@ -257,15 +257,20 @@
             <div class="social-page__video intro__video" data-aos="fade-in" data-aos-delay="2000" data-aos-anchor=".social-page">
                 <div class="social-page__video--bg"></div>
                 <div class="social-page__video--bg-elem _decor-hexagon _decor-alt-bold-hexagon"></div>
-                <video width="546" autoplay muted loop class="social-page__video--block intro__video--block" playsinline>
+                <video id="intro-video" width="546" autoplay muted loop class="social-page__video--block intro__video--block" playsinline data-src="video/planet-370.mp4" poster="img/intro/planet-fallback.jpg">
+                    <source data-src="video/planet-546.mp4" data-mw="1080" src="/">
+                    <source data-src="video/planet-500.mp4" data-mw="992" src="/">
+                    <source data-src="video/planet-370.mp4" data-mw="768" src="/">
+                </video>
+                <!-- <video width="546" autoplay muted loop class="social-page__video--block intro__video--block" playsinline>
                     <source 
                     data-src_start="video/video.webm"
                     data-src_992="video/video-table.webm"
                     data-src_425="video/video-mob.webm"
                     src="#" type="video/webm">
-                </video>
+                </video> -->
                 
-                <picture>
+                <!-- <picture>
                     <source srcset="img/first-lesson/popup-image.webp" type="image/webp">
                     <img src="img/first-lesson/popup-image.jpg" loading="lazy" alt="" class="intro__video--block-preview">
                 </picture>
@@ -274,7 +279,7 @@
                         <source srcset="video/video-mob.webp" type="image/webp">
                         <img src="video/video-mob.gif" loading="lazy" alt="" class="intro__video--block-alt-img">
                     </picture>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
