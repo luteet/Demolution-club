@@ -218,9 +218,9 @@ document.addEventListener('DOMContentLoaded', function() {
         headerNavBody.prepend(appendBlock);
         appendBlock.classList.add('_visible');
       }
-
+      
       try {
-        sliders.reviewsSlider.desktopMode();
+        sliders.reviewsSlider.desktopMode();  
       } catch {
 
       }
@@ -233,9 +233,9 @@ document.addEventListener('DOMContentLoaded', function() {
           headerNavBlockBody.prepend(appendBlock);
           appendBlock.classList.add('_visible');
       }
-
+      
       try {
-        sliders.reviewsSlider.tableMode();
+        sliders.reviewsSlider.tableMode();  
       } catch {
 
       }
