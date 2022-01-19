@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener("resize", debounce(resize, 150));
 
 
-    headerToggle({ header });
+    if(header) headerToggle({ header });
 
     new VideoResponser('#intro-video')
 
