@@ -121,9 +121,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // =-=-=-=-=-=-=-= ГРАФИК { =-=-=-=-=-=-=-=
 
     try {
-      chart();
+        chart();
     } catch {
-      
+
     }
     
 
@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 try {
-                  sliders.reviewsSlider.desktopMode();
+                    sliders.reviewsSlider.desktopMode();
                 } catch {
 
                 }
@@ -190,10 +190,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 try {
-                  sliders.reviewsSlider.tableMode();
+                    sliders.reviewsSlider.tableMode();
                 } catch {
 
                 }
+                
+
 
             });
     }
