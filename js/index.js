@@ -120,12 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // =-=-=-=-=-=-=-= ГРАФИК { =-=-=-=-=-=-=-=
 
-    try {
-        chart();
-    } catch {
-
-    }
-    
+    chart();
 
     // =-=-=-=-=-=-=-= ГРАФИК } =-=-=-=-=-=-=-=
 
@@ -169,33 +164,22 @@ document.addEventListener('DOMContentLoaded', function () {
         resizeCheckFunc(768,
             function () {
 
-                if (appendBlock) {
+                if (appendBlock && headerNavBody) {
                     headerNavBody.prepend(appendBlock);
                     appendBlock.classList.add('_visible');
                 }
 
-                try {
-                    sliders.reviewsSlider.desktopMode();
-                } catch {
-
-                }
-                
+                sliders.reviewsSlider.desktopMode();
 
             },
             function () {
 
-                if (appendBlock) {
+                if (appendBlock && headerNavBlockBody) {
                     headerNavBlockBody.prepend(appendBlock);
                     appendBlock.classList.add('_visible');
                 }
 
-                try {
-                    sliders.reviewsSlider.tableMode();
-                } catch {
-
-                }
-                
-
+                sliders.reviewsSlider.tableMode();
 
             });
     }
@@ -205,15 +189,15 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener("resize", debounce(resize, 150));
 
 
-    if(header) headerToggle({ header });
+    if (header) {
+        headerToggle({ header });
+    }
 
     new VideoResponser('#intro-video')
 
     // Autoplay video IPhone low power mode not working (
     const mainVideoElem = document.getElementById('intro-video');
-
-    mainVideoElem.play().then(() => {}).catch((error) => {
-    });
+    mainVideoElem.play()
 });
 
 
@@ -224,22 +208,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 window.onload = loaded */
 
-
-// Function with stuff to execute
-/* function resizeContent() {
-  // Do loads of stuff once window has resized
-  console.log('resized');
-}
- */
-// Eventlistener
-
-
 // Анимация {
 
 AOS.init({
     duration: 600,
     easing: 'ease-in-out',
+    offset: 50
 });
-
-// }
-
